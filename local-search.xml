@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/blog-adventure/2020/12/31/hello-world/"/>
+    <url>/blog-adventure/2020/12/31/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>什么是 vuex?</title>
+    <link href="/blog-adventure/2020/12/31/vuexViews/README/"/>
+    <url>/blog-adventure/2020/12/31/vuexViews/README/</url>
+    
+    <content type="html"><![CDATA[<h1 id="什么是-vuex"><a href="#什么是-vuex" class="headerlink" title="什么是 vuex?"></a>什么是 vuex?</h1><p>Vuex 是一个专为 Vue.js 应用程序开发的<code>状态管理模式</code>。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种<code>可预测的</code>方式发生变化。</p><p>::: tip 说明<br>此系列文章，由浅入深，实现对 <code>源码</code> 的完全解析<br>:::</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>vuex</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue全家桶</tag>
+      
+      <tag>vuex</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>assertRawModule</title>
+    <link href="/blog-adventure/2020/12/31/vuexViews/assertRawModule-vuex/"/>
+    <url>/blog-adventure/2020/12/31/vuexViews/assertRawModule-vuex/</url>
+    
+    <content type="html"><![CDATA[<h1 id="assertRawModule"><a href="#assertRawModule" class="headerlink" title="assertRawModule"></a>assertRawModule</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs js&#123;17&#125;">&#x2F;&#x2F;从Assert可以得出：mutations和getters里面定义的只能是函数，而actions可以是函数或者含有handler函数的对象<br>&#x2F;&#x2F;assertRawModule作用就是判断模块中定义的类型是否正确，在dev环境下会警告<br>const functionAssert &#x3D; &#123;<br>  assert: value &#x3D;&gt; typeof value &#x3D;&#x3D;&#x3D; &#39;function&#39;,<br>  expected: &#39;function&#39;<br>&#125;<br>const objectAssert &#x3D; &#123;<br>  assert: value &#x3D;&gt; typeof value &#x3D;&#x3D;&#x3D; &#39;function&#39; ||<br>    (typeof value &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; typeof value.handler &#x3D;&#x3D;&#x3D; &#39;function&#39;),<br>  expected: &#39;function or object with &quot;handler&quot; function&#39;<br>&#125;<br>const assertTypes &#x3D; &#123;<br>  getters: functionAssert, &#x2F;&#x2F;期望getters 是函数<br>  mutations: functionAssert,&#x2F;&#x2F; 期望 mutations 是函数<br>  actions: objectAssert &#x2F;&#x2F; 期望actions是函数或者是对象并且对象的 handler 是函数<br>&#125;<br>function assertRawModule(path, rawModule) &#123;<br>  Object.keys(assertTypes).forEach(key &#x3D;&gt; &#123;&#x2F;&#x2F;key: getters mutations actions<br>    if (!rawModule[key]) return &#x2F;&#x2F; 检测模块没有定义 getters mutations actions 直接return<br><br>    const assertOptions &#x3D; assertTypes[key] &#x2F;&#x2F;获取相关类型的 Assert: &#123;assert,expected&#125;<br>    &#x2F;&#x2F; mutations: &#123;&#x2F;&#x2F;rawModule[key]<br>    &#x2F;&#x2F;   name：(state)&#x3D;&gt;&#123;<br>    &#x2F;&#x2F;     ……<br>    &#x2F;&#x2F;   &#125;<br>    &#x2F;&#x2F; &#125;<br>    &#x2F;&#x2F;forEachValue 与 assert 可以在 工具-方法 中查看<br>    forEachValue(rawModule[key], (value, type) &#x3D;&gt; &#123;&#x2F;&#x2F;value是如：(state)&#x3D;&gt; &#123;&#125;，type如：name<br>      assert(<br>        assertOptions.assert(value),<br>        makeAssertionMessage(path, key, type, value, assertOptions.expected)<br>      )<br>    &#125;)<br>  &#125;)<br>&#125;<br>&#x2F;&#x2F;path:[]装模块名称的数组 key:getters&#x2F;mutations&#x2F;actions type:相关(getter&#x2F;actions&#x2F;mutations)里面定义的函数名称<br>&#x2F;&#x2F;value: 里面定义的函数体<br>function makeAssertionMessage(path, key, type, value, expected) &#123;<br>  let buf &#x3D; &#96;$&#123;key&#125; should be $&#123;expected&#125; but &quot;$&#123;key&#125;.$&#123;type&#125;&quot;&#96;<br>  if (path.length &gt; 0) &#123;<br>    buf +&#x3D; &#96; in module &quot;$&#123;path.join(&#39;.&#39;)&#125;&quot;&#96;<br>  &#125;<br>  buf +&#x3D; &#96; is $&#123;JSON.stringify(value)&#125;.&#96;<br>  return buf<br>&#125;<br></code></pre></td></tr></table></figure><p>上述代码加上注释非常容易看懂，此方法的作用主要是约束用户定义的 <code>getters/mutations/actions</code> 类型是否正确，从 <code>Assert</code> 可以得出：<code>mutations</code> 和 <code>getters</code> 里面定义的只能是函数，而 <code>actions</code> 可以是函数或者含有 <code>handler</code> 函数的对象。举例：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  actions: &#123;<br>    name: <span class="hljs-number">123</span>,<span class="hljs-comment">//类型错误</span><br>    sex: &#123;&#125;,<span class="hljs-comment">//类型错误</span><br>    <span class="hljs-function"><span class="hljs-title">age</span>(<span class="hljs-params"></span>)</span> &#123;&#125;,<span class="hljs-comment">//类型正确</span><br>    address: &#123;<span class="hljs-comment">//类型正确</span><br>      <span class="hljs-function"><span class="hljs-title">handler</span>(<span class="hljs-params"></span>)</span> &#123;&#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>::: tip 提示<br><code>forEachValue</code> 与 <code>assert</code> 可以在 <code>工具-方法</code> 中查看<br>:::</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>vuex</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue全家桶</tag>
+      
+      <tag>vuex</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
